@@ -202,6 +202,46 @@ function Index() {
         )}
       </section>
 
+      {/* Notify preferences (moved to bottom) */}
+      <section className="mx-auto max-w-6xl px-4 pb-8">
+        <div className="rounded-3xl bg-accent-green-soft p-5 ring-1 ring-accent-green/30">
+          <div className="mb-3 flex items-center justify-between gap-2">
+            <div>
+              <h2 className="font-display text-lg font-extrabold text-foreground">
+                🔔 Notify me about
+              </h2>
+              <p className="text-xs text-muted-foreground">
+                Tap categories you care about. We'll ping you when new ones drop.
+              </p>
+            </div>
+            {prefs.size > 0 && (
+              <span className="rounded-full bg-accent-green px-2 py-0.5 text-[11px] font-semibold text-accent-green-foreground">
+                {prefs.size} on
+              </span>
+            )}
+          </div>
+          <div className="flex flex-wrap gap-2">
+            {ALL_CATEGORIES.map((c) => {
+              const on = prefs.has(c);
+              return (
+                <button
+                  key={c}
+                  onClick={() => togglePref(c)}
+                  className={`flex items-center gap-1.5 rounded-full px-3 py-1.5 text-xs font-semibold transition ${
+                    on
+                      ? `${CATEGORY_META[c].chipClass} ring-2 ring-accent-green`
+                      : "bg-card text-muted-foreground ring-1 ring-border hover:bg-muted"
+                  }`}
+                >
+                  <span aria-hidden>{CATEGORY_META[c].icon}</span>
+                  <span>{CATEGORY_META[c].label}</span>
+                </button>
+              );
+            })}
+          </div>
+        </div>
+      </section>
+
       <footer className="border-t py-8 text-center text-xs text-muted-foreground">
         Built for students · Live On Campus
       </footer>
