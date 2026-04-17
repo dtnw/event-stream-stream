@@ -7,6 +7,7 @@ import { useNotifyPrefs } from "@/hooks/use-notify-prefs";
 import {
   ALL_CATEGORIES,
   CATEGORY_META,
+  isLiveNow,
   isToday,
   type Category,
   type CampusEvent,
@@ -59,7 +60,15 @@ function Index() {
     });
   }, [events, active]);
 
-  const grouped = useMemo(() => groupByDate(filtered), [filtered]);
+  const liveEvents = useMemo(
+    () => filtered.filter((e) => isLiveNow(e)),
+    [filtered],
+  );
+  const upcoming = useMemo(
+    () => filtered.filter((e) => !isLiveNow(e)),
+    [filtered],
+  );
+  const grouped = useMemo(() => groupByDate(upcoming), [upcoming]);
 
   return (
     <div className="min-h-screen pb-16">
@@ -143,7 +152,28 @@ function Index() {
             </p>
           </div>
         ) : (
-          <div className="space-y-6">
+          <div className="space-y-8">
+            {liveEvents.length > 0 && (
+              <div>
+                <div className="mb-2 flex items-baseline justify-between border-b border-destructive/30 pb-1">
+                  <h3 className="flex items-center gap-2 font-display text-sm font-extrabold uppercase tracking-wider text-destructive">
+                    <span className="relative flex h-2.5 w-2.5">
+                      <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-destructive opacity-75" />
+                      <span className="relative inline-flex h-2.5 w-2.5 rounded-full bg-destructive" />
+                    </span>
+                    ● Happening now
+                  </h3>
+                  <span className="text-[11px] font-semibold text-muted-foreground">
+                    {liveEvents.length} live
+                  </span>
+                </div>
+                <div className="grid gap-2 md:grid-cols-2">
+                  {liveEvents.map((e) => (
+                    <EventRow key={e.id} event={e} />
+                  ))}
+                </div>
+              </div>
+            )}
             {grouped.map(({ key, label, items }) => (
               <div key={key}>
                 <div className="mb-2 flex items-baseline justify-between border-b pb-1">
