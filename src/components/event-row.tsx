@@ -49,8 +49,13 @@ export function EventRow({ event }: { event: CampusEvent }) {
           <span aria-hidden>·</span>
           <span className="truncate">{event.host}</span>
         </p>
-        {/* All tags */}
+        {/* All tags + limited spots */}
         <div className="mt-1.5 flex flex-wrap gap-1">
+          {event.limitedSpots && (
+            <span className="inline-flex items-center gap-0.5 rounded-full bg-destructive/15 px-1.5 py-0.5 text-[9px] font-black uppercase tracking-wide text-destructive ring-1 ring-destructive/30">
+              ⚡ Limited spots left
+            </span>
+          )}
           {event.categories.map((c) => (
             <span
               key={c}
@@ -62,7 +67,7 @@ export function EventRow({ event }: { event: CampusEvent }) {
         </div>
       </div>
 
-      <div className="flex shrink-0 flex-col items-end gap-1 self-center text-right">
+      <div className="flex shrink-0 flex-col items-end gap-0.5 self-center text-right">
         {live ? (
           <span className="inline-flex items-center gap-1 text-[11px] font-bold text-destructive">
             <span className="relative flex h-1.5 w-1.5">
@@ -74,6 +79,11 @@ export function EventRow({ event }: { event: CampusEvent }) {
         ) : (
           <span className="text-[11px] font-semibold text-muted-foreground">
             {event.rsvps} going
+          </span>
+        )}
+        {(event.interested ?? 0) > 0 && (
+          <span className="inline-flex items-center gap-0.5 text-[10px] font-semibold text-muted-foreground">
+            <span className="text-cta">★</span> {event.interested} interested
           </span>
         )}
       </div>

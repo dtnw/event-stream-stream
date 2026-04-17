@@ -19,6 +19,8 @@ export type CampusEvent = {
   categories: Category[];
   emoji: string;
   rsvps: number;
+  interested?: number;
+  limitedSpots?: boolean;
   cost?: string;
 };
 
@@ -105,6 +107,7 @@ export const SEED_EVENTS: CampusEvent[] = [
     categories: ["club", "free-food", "networking", "social"],
     emoji: "✨",
     rsvps: 184,
+    interested: 92,
     cost: "Free",
   },
   {
@@ -119,6 +122,8 @@ export const SEED_EVENTS: CampusEvent[] = [
     categories: ["club", "career", "networking", "social"],
     emoji: "🎤",
     rsvps: 96,
+    interested: 154,
+    limitedSpots: true,
     cost: "Free",
   },
   {
@@ -133,6 +138,7 @@ export const SEED_EVENTS: CampusEvent[] = [
     categories: ["online", "faculty", "career"],
     emoji: "📚",
     rsvps: 38,
+    interested: 47,
     cost: "Free",
   },
   {
@@ -147,6 +153,8 @@ export const SEED_EVENTS: CampusEvent[] = [
     categories: ["faculty", "career", "free-food", "club"],
     emoji: "🤖",
     rsvps: 73,
+    interested: 121,
+    limitedSpots: true,
     cost: "Free",
   },
   {
@@ -161,6 +169,7 @@ export const SEED_EVENTS: CampusEvent[] = [
     categories: ["free-food", "social", "club"],
     emoji: "🥞",
     rsvps: 322,
+    interested: 198,
     cost: "Free",
   },
   {
@@ -175,6 +184,7 @@ export const SEED_EVENTS: CampusEvent[] = [
     categories: ["free-food"],
     emoji: "🥦",
     rsvps: 214,
+    interested: 88,
     cost: "Free",
   },
   {
@@ -189,6 +199,8 @@ export const SEED_EVENTS: CampusEvent[] = [
     categories: ["faculty", "career", "networking", "free-food"],
     emoji: "📊",
     rsvps: 138,
+    interested: 207,
+    limitedSpots: true,
     cost: "Free",
   },
   {
@@ -203,6 +215,7 @@ export const SEED_EVENTS: CampusEvent[] = [
     categories: ["faculty", "free-food", "networking"],
     emoji: "🩺",
     rsvps: 64,
+    interested: 113,
     cost: "Free",
   },
   {
@@ -217,6 +230,7 @@ export const SEED_EVENTS: CampusEvent[] = [
     categories: ["social"],
     emoji: "🐶",
     rsvps: 240,
+    interested: 312,
     cost: "Free",
   },
   {
@@ -231,6 +245,8 @@ export const SEED_EVENTS: CampusEvent[] = [
     categories: ["career", "ticketed", "networking"],
     emoji: "☕",
     rsvps: 58,
+    interested: 142,
+    limitedSpots: true,
     cost: "Ticketed",
   },
   {
@@ -245,6 +261,8 @@ export const SEED_EVENTS: CampusEvent[] = [
     categories: ["career", "ticketed"],
     emoji: "🩹",
     rsvps: 42,
+    interested: 96,
+    limitedSpots: true,
     cost: "Ticketed",
   },
   {
@@ -259,6 +277,7 @@ export const SEED_EVENTS: CampusEvent[] = [
     categories: ["career", "networking", "free-food"],
     emoji: "💼",
     rsvps: 287,
+    interested: 188,
     cost: "Free",
   },
 ];
@@ -289,6 +308,14 @@ export const addEvent = (e: Omit<CampusEvent, "id" | "rsvps">) => {
 };
 export const rsvp = (id: string) => {
   events = events.map((e) => (e.id === id ? { ...e, rsvps: e.rsvps + 1 } : e));
+  notify();
+};
+export const toggleInterested = (id: string, on: boolean) => {
+  events = events.map((e) =>
+    e.id === id
+      ? { ...e, interested: Math.max(0, (e.interested ?? 0) + (on ? 1 : -1)) }
+      : e,
+  );
   notify();
 };
 

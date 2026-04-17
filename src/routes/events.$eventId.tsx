@@ -1,5 +1,5 @@
 import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { SiteHeader } from "@/components/site-header";
 import {
   CATEGORY_META,
@@ -7,8 +7,11 @@ import {
   getEvent,
   isToday,
   rsvp,
+  toggleInterested,
 } from "@/lib/events";
 import { useEvents } from "@/hooks/use-events";
+
+const INTERESTED_KEY = "loc:interested:v1";
 
 export const Route = createFileRoute("/events/$eventId")({
   component: EventDetail,
@@ -54,6 +57,18 @@ function EventDetail() {
   const event = getEvent(eventId);
   const navigate = useNavigate();
   const [rsvped, setRsvped] = useState(false);
+  const [interested, setInterested] = useState(false);
+
+  // Restore interested state from localStorage
+  useEffect(() => {
+    try {
+      const raw = localStorage.getItem(INTERESTED_KEY);
+      const set = new Set<string>(raw ? JSON.parse(raw) : []);
+      setInterested(set.has(eventId));
+    } catch {
+      // ignore
+    }
+  }, [eventId]);
 
   if (!event) {
     return (
@@ -84,6 +99,21 @@ function EventDetail() {
     setRsvped(true);
   };
 
+  const handleInterested = () => {
+    const next = !interested;
+    setInterested(next);
+    toggleInterested(event.id, next);
+    try {
+      const raw = localStorage.getItem(INTERESTED_KEY);
+      const set = new Set<string>(raw ? JSON.parse(raw) : []);
+      if (next) set.add(event.id);
+      else set.delete(event.id);
+      localStorage.setItem(INTERESTED_KEY, JSON.stringify([...set]));
+    } catch {
+      // ignore
+    }
+  };
+
   return (
     <div className="min-h-screen">
       <SiteHeader />
@@ -103,7 +133,12 @@ function EventDetail() {
             {event.emoji}
           </div>
           <div className="space-y-6 p-8">
-            <div className="flex flex-wrap gap-1.5">
+            <div className="flex flex-wrap items-center gap-1.5">
+              {event.limitedSpots && (
+                <span className="inline-flex items-center gap-1 rounded-full bg-destructive/15 px-2.5 py-1 text-[11px] font-black uppercase tracking-wide text-destructive ring-1 ring-destructive/30">
+                  ⚡ Limited spots left
+                </span>
+              )}
               {event.categories.map((c) => (
                 <span
                   key={c}
@@ -158,19 +193,46 @@ function EventDetail() {
             </div>
 
             <div className="flex flex-wrap items-center justify-between gap-4 border-t pt-6">
-              <p className="text-sm text-muted-foreground">
-                <span className="text-2xl font-display font-extrabold text-foreground">
-                  {event.rsvps}
-                </span>{" "}
-                students going
-              </p>
-              <button
-                onClick={handleRsvp}
-                disabled={rsvped}
-                className="rounded-full bg-cta px-8 py-3 font-bold text-cta-foreground shadow-sm transition hover:brightness-95 disabled:cursor-not-allowed disabled:opacity-70"
-              >
-                {rsvped ? "✓ You're going" : "RSVP — one tap"}
-              </button>
+              <div className="text-sm text-muted-foreground">
+                <p>
+                  <span className="font-display text-2xl font-extrabold text-foreground">
+                    {event.rsvps}
+                  </span>{" "}
+                  going
+                </p>
+                {(event.interested ?? 0) > 0 && (
+                  <p className="mt-0.5 inline-flex items-center gap-1 text-xs">
+                    <span className="text-cta">★</span>
+                    <span className="font-semibold text-foreground">
+                      {event.interested}
+                    </span>{" "}
+                    interested
+                  </p>
+                )}
+              </div>
+              <div className="flex items-center gap-2">
+                <button
+                  onClick={handleInterested}
+                  aria-pressed={interested}
+                  className={`flex items-center gap-1.5 rounded-full border-2 px-4 py-3 font-bold transition ${
+                    interested
+                      ? "border-cta bg-cta/20 text-foreground"
+                      : "border-border bg-card text-muted-foreground hover:border-cta hover:text-foreground"
+                  }`}
+                >
+                  <span className={interested ? "text-cta" : ""}>
+                    {interested ? "★" : "☆"}
+                  </span>
+                  {interested ? "Interested" : "Interested"}
+                </button>
+                <button
+                  onClick={handleRsvp}
+                  disabled={rsvped}
+                  className="rounded-full bg-cta px-6 py-3 font-bold text-cta-foreground shadow-sm transition hover:brightness-95 disabled:cursor-not-allowed disabled:opacity-70"
+                >
+                  {rsvped ? "✓ Going" : "RSVP"}
+                </button>
+              </div>
             </div>
           </div>
         </div>
