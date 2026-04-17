@@ -32,20 +32,18 @@ export function EventRow({ event }: { event: CampusEvent }) {
       </div>
 
       <div className="min-w-0 flex-1">
-        <div className="flex items-center gap-2">
-          {live && (
-            <span className="inline-flex items-center gap-1 rounded-full bg-destructive px-1.5 py-0.5 text-[9px] font-black uppercase tracking-wider text-destructive-foreground">
-              <span className="relative flex h-1.5 w-1.5">
-                <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-white opacity-75" />
-                <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-white" />
-              </span>
-              Live
+        {live && (
+          <span className="mb-1 inline-flex items-center gap-1 rounded-full bg-destructive px-1.5 py-0.5 text-[9px] font-black uppercase tracking-wider text-destructive-foreground">
+            <span className="relative flex h-1.5 w-1.5">
+              <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-white opacity-75" />
+              <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-white" />
             </span>
-          )}
-          <p className="truncate font-display text-sm font-extrabold text-foreground">
-            {event.title}
-          </p>
-        </div>
+            Live now
+          </span>
+        )}
+        <p className="truncate font-display text-sm font-extrabold leading-tight text-foreground">
+          {event.title}
+        </p>
         <p className="mt-0.5 flex items-center gap-1.5 truncate text-xs text-muted-foreground">
           <span>{timeFmt(event.date)}</span>
           <span aria-hidden>·</span>
@@ -64,10 +62,20 @@ export function EventRow({ event }: { event: CampusEvent }) {
         </div>
       </div>
 
-      <div className="flex shrink-0 flex-col items-end gap-1">
-        <span className="text-[11px] font-semibold text-muted-foreground">
-          {event.rsvps} going
-        </span>
+      <div className="flex shrink-0 flex-col items-end gap-1 self-center text-right">
+        {live ? (
+          <span className="inline-flex items-center gap-1 text-[11px] font-bold text-destructive">
+            <span className="relative flex h-1.5 w-1.5">
+              <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-destructive opacity-75" />
+              <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-destructive" />
+            </span>
+            31 here
+          </span>
+        ) : (
+          <span className="text-[11px] font-semibold text-muted-foreground">
+            {event.rsvps} going
+          </span>
+        )}
       </div>
     </Link>
   );
