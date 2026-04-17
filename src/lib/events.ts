@@ -19,6 +19,8 @@ export type CampusEvent = {
   categories: Category[];
   emoji: string;
   rsvps: number;
+  interested: number;
+  limitedSpots?: boolean;
   cost?: string;
 };
 
