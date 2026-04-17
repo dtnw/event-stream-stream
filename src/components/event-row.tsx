@@ -1,5 +1,5 @@
 import { Link } from "@tanstack/react-router";
-import { CATEGORY_META, type CampusEvent } from "@/lib/events";
+import { CATEGORY_META, isLiveNow, type CampusEvent } from "@/lib/events";
 
 const timeFmt = (iso: string) =>
   new Date(iso).toLocaleTimeString([], { hour: "numeric", minute: "2-digit" });
@@ -7,19 +7,41 @@ const timeFmt = (iso: string) =>
 export function EventRow({ event }: { event: CampusEvent }) {
   const primary = event.categories[0] ?? "social";
   const meta = CATEGORY_META[primary];
+  const live = isLiveNow(event);
+
   return (
     <Link
       to="/events/$eventId"
       params={{ eventId: event.id }}
-      className="group flex items-center gap-3 rounded-2xl bg-card p-3 ring-1 ring-border transition hover:-translate-y-0.5 hover:shadow-md"
+      className={`group relative flex items-start gap-3 rounded-2xl bg-card p-3 ring-1 transition hover:-translate-y-0.5 hover:shadow-md ${
+        live
+          ? "ring-2 ring-destructive shadow-[0_0_0_4px_color-mix(in_oklab,var(--destructive)_15%,transparent)]"
+          : "ring-border"
+      }`}
     >
       <div
-        className={`${meta.cardClass} flex h-12 w-12 shrink-0 items-center justify-center rounded-xl text-2xl`}
+        className={`${meta.cardClass} relative flex h-12 w-12 shrink-0 items-center justify-center rounded-xl text-2xl`}
       >
         <span aria-hidden>{event.emoji}</span>
+        {live && (
+          <span className="absolute -right-1 -top-1 flex h-3.5 w-3.5">
+            <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-destructive opacity-75" />
+            <span className="relative inline-flex h-3.5 w-3.5 rounded-full bg-destructive ring-2 ring-card" />
+          </span>
+        )}
       </div>
+
       <div className="min-w-0 flex-1">
         <div className="flex items-center gap-2">
+          {live && (
+            <span className="inline-flex items-center gap-1 rounded-full bg-destructive px-1.5 py-0.5 text-[9px] font-black uppercase tracking-wider text-destructive-foreground">
+              <span className="relative flex h-1.5 w-1.5">
+                <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-white opacity-75" />
+                <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-white" />
+              </span>
+              Live
+            </span>
+          )}
           <p className="truncate font-display text-sm font-extrabold text-foreground">
             {event.title}
           </p>
@@ -29,14 +51,21 @@ export function EventRow({ event }: { event: CampusEvent }) {
           <span aria-hidden>·</span>
           <span className="truncate">{event.host}</span>
         </p>
+        {/* All tags */}
+        <div className="mt-1.5 flex flex-wrap gap-1">
+          {event.categories.map((c) => (
+            <span
+              key={c}
+              className={`${CATEGORY_META[c].chipClass} rounded-full px-1.5 py-0.5 text-[9px] font-bold uppercase tracking-wide`}
+            >
+              {CATEGORY_META[c].icon} {CATEGORY_META[c].label}
+            </span>
+          ))}
+        </div>
       </div>
+
       <div className="flex shrink-0 flex-col items-end gap-1">
-        <span
-          className={`${meta.chipClass} rounded-full px-2 py-0.5 text-[10px] font-bold uppercase tracking-wide`}
-        >
-          {meta.label}
-        </span>
-        <span className="text-[11px] text-muted-foreground">
+        <span className="text-[11px] font-semibold text-muted-foreground">
           {event.rsvps} going
         </span>
       </div>
