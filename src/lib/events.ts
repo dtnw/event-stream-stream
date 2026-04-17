@@ -178,20 +178,6 @@ export const SEED_EVENTS: CampusEvent[] = [
     cost: "Free",
   },
   {
-    id: "chillout-burwood",
-    title: "DUSA Chill Out Trolley — Burwood",
-    host: "DUSA",
-    description:
-      "Burwood students — get your FREE snack and drink fix in the Burwood Library on Level 2! Every Tuesday during T1.",
-    date: at(2026, 4, 21, 17, 0),
-    endDate: at(2026, 4, 21, 18, 0),
-    location: "Burwood Library, Level 2",
-    categories: ["free-food", "social", "club"],
-    emoji: "🥤",
-    rsvps: 154,
-    cost: "Free",
-  },
-  {
     id: "business-faculty-mixer",
     title: "Deakin Business School Industry Mixer",
     host: "Faculty of Business & Law",
