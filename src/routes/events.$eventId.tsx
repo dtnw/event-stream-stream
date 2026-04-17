@@ -1,5 +1,5 @@
 import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { SiteHeader } from "@/components/site-header";
 import {
   CATEGORY_META,
@@ -7,8 +7,11 @@ import {
   getEvent,
   isToday,
   rsvp,
+  toggleInterested,
 } from "@/lib/events";
 import { useEvents } from "@/hooks/use-events";
+
+const INTERESTED_KEY = "loc:interested:v1";
 
 export const Route = createFileRoute("/events/$eventId")({
   component: EventDetail,
@@ -54,6 +57,18 @@ function EventDetail() {
   const event = getEvent(eventId);
   const navigate = useNavigate();
   const [rsvped, setRsvped] = useState(false);
+  const [interested, setInterested] = useState(false);
+
+  // Restore interested state from localStorage
+  useEffect(() => {
+    try {
+      const raw = localStorage.getItem(INTERESTED_KEY);
+      const set = new Set<string>(raw ? JSON.parse(raw) : []);
+      setInterested(set.has(eventId));
+    } catch {
+      // ignore
+    }
+  }, [eventId]);
 
   if (!event) {
     return (
