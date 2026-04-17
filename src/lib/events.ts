@@ -5,7 +5,8 @@ export type Category =
   | "faculty"
   | "club"
   | "career"
-  | "social";
+  | "social"
+  | "online";
 
 export type CampusEvent = {
   id: string;
@@ -67,6 +68,12 @@ export const CATEGORY_META: Record<
     cardClass: "bg-cat-social",
     icon: "🎉",
   },
+  online: {
+    label: "Online",
+    chipClass: "bg-accent-green-soft text-accent-green-foreground",
+    cardClass: "bg-accent-green-soft",
+    icon: "💻",
+  },
 };
 
 export const ALL_CATEGORIES: Category[] = [
@@ -77,6 +84,7 @@ export const ALL_CATEGORIES: Category[] = [
   "club",
   "career",
   "social",
+  "online",
 ];
 
 const at = (year: number, month: number, day: number, h: number, m = 0) => {
@@ -111,6 +119,20 @@ export const SEED_EVENTS: CampusEvent[] = [
     categories: ["club", "career", "networking", "social"],
     emoji: "🎤",
     rsvps: 96,
+    cost: "Free",
+  },
+  {
+    id: "lib-advanced-lit",
+    title: "Advanced Literature Searching",
+    host: "Deakin Library",
+    description:
+      "An online library workshop for students writing literature reviews. Learn advanced database search techniques, Boolean logic, and citation tracking. Bring a research topic.",
+    date: at(2026, 4, 22, 10, 0),
+    endDate: at(2026, 4, 22, 11, 30),
+    location: "Online (Zoom)",
+    categories: ["online", "faculty", "career"],
+    emoji: "📚",
+    rsvps: 38,
     cost: "Free",
   },
   {
