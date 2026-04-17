@@ -80,14 +80,16 @@
 
 :root {
   --radius: 1rem;
-  --background: oklch(0.985 0.012 95);
-  --foreground: oklch(0.22 0.04 240);
+  /* Deakin palette: warm cream bg, near-black ink, yellow accent */
+  --background: oklch(0.97 0.01 95); /* F0EEE2 cream */
+  --foreground: oklch(0.27 0.01 270); /* 373534 charcoal */
   --card: oklch(1 0 0);
-  --card-foreground: oklch(0.129 0.042 264.695);
+  --card-foreground: oklch(0.27 0.01 270);
   --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.129 0.042 264.695);
-  --primary: oklch(0.72 0.13 215);
-  --primary-foreground: oklch(0.99 0.005 240);
+  --popover-foreground: oklch(0.27 0.01 270);
+  /* Deakin charcoal as primary brand */
+  --primary: oklch(0.27 0.01 270);
+  --primary-foreground: oklch(0.97 0.01 95);
   --secondary: oklch(0.968 0.007 247.896);
   --secondary-foreground: oklch(0.208 0.042 265.755);
   --muted: oklch(0.968 0.007 247.896);
@@ -113,23 +115,23 @@
   --sidebar-border: oklch(0.929 0.013 255.508);
   --sidebar-ring: oklch(0.704 0.04 256.788);
 
-  /* CTA: warm yellow pill like the reference */
-  --cta: oklch(0.86 0.16 90);
-  --cta-foreground: oklch(0.25 0.05 240);
+  /* Deakin yellow CTA (FFE65C / FFD923) */
+  --cta: oklch(0.92 0.16 95);
+  --cta-foreground: oklch(0.27 0.01 270);
 
-  /* Pastel category cards */
-  --cat-food: oklch(0.9 0.08 60); /* peach */
-  --cat-food-foreground: oklch(0.32 0.08 40);
-  --cat-club: oklch(0.9 0.08 150); /* mint */
-  --cat-club-foreground: oklch(0.3 0.08 150);
-  --cat-career: oklch(0.88 0.07 290); /* lavender */
-  --cat-career-foreground: oklch(0.3 0.08 290);
-  --cat-social: oklch(0.9 0.08 20); /* soft pink */
-  --cat-social-foreground: oklch(0.32 0.1 20);
-  --cat-faculty: oklch(0.9 0.07 220); /* soft sky */
-  --cat-faculty-foreground: oklch(0.3 0.1 240);
-  --cat-ticketed: oklch(0.9 0.08 100); /* soft lime */
-  --cat-ticketed-foreground: oklch(0.3 0.08 130);
+  /* Deakin brand-aligned category cards */
+  --cat-food: oklch(0.78 0.17 65); /* Deakin orange FF9300 */
+  --cat-food-foreground: oklch(0.25 0.05 50);
+  --cat-club: oklch(0.74 0.13 195); /* Deakin teal 58BCAF */
+  --cat-club-foreground: oklch(0.22 0.04 200);
+  --cat-career: oklch(0.55 0.13 230); /* Deakin blue 007D98 */
+  --cat-career-foreground: oklch(0.98 0.01 95);
+  --cat-social: oklch(0.65 0.2 350); /* Deakin magenta C74298 */
+  --cat-social-foreground: oklch(0.98 0.01 95);
+  --cat-faculty: oklch(0.27 0.01 270); /* Deakin charcoal */
+  --cat-faculty-foreground: oklch(0.92 0.16 95);
+  --cat-ticketed: oklch(0.92 0.16 95); /* Deakin yellow */
+  --cat-ticketed-foreground: oklch(0.27 0.01 270);
 }
 
 .dark {
