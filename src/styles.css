@@ -74,6 +74,9 @@
   --color-cat-faculty-foreground: var(--cat-faculty-foreground);
   --color-cat-ticketed: var(--cat-ticketed);
   --color-cat-ticketed-foreground: var(--cat-ticketed-foreground);
+  --color-accent-green: var(--accent-green);
+  --color-accent-green-foreground: var(--accent-green-foreground);
+  --color-accent-green-soft: var(--accent-green-soft);
   --font-display: "Nunito", ui-sans-serif, system-ui, sans-serif;
   --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
 }
@@ -119,11 +122,11 @@
   --cta: oklch(0.92 0.16 95);
   --cta-foreground: oklch(0.27 0.01 270);
 
-  /* Deakin brand-aligned category cards */
+  /* Deakin brand-aligned category cards — leaning into the teal/green */
   --cat-food: oklch(0.78 0.17 65); /* Deakin orange FF9300 */
   --cat-food-foreground: oklch(0.25 0.05 50);
-  --cat-club: oklch(0.74 0.13 195); /* Deakin teal 58BCAF */
-  --cat-club-foreground: oklch(0.22 0.04 200);
+  --cat-club: oklch(0.78 0.11 180); /* Deakin teal-green 58BCAF */
+  --cat-club-foreground: oklch(0.22 0.05 195);
   --cat-career: oklch(0.55 0.13 230); /* Deakin blue 007D98 */
   --cat-career-foreground: oklch(0.98 0.01 95);
   --cat-social: oklch(0.65 0.2 350); /* Deakin magenta C74298 */
@@ -132,6 +135,11 @@
   --cat-faculty-foreground: oklch(0.92 0.16 95);
   --cat-ticketed: oklch(0.92 0.16 95); /* Deakin yellow */
   --cat-ticketed-foreground: oklch(0.27 0.01 270);
+
+  /* Green accent — used for highlights, hero ribbons, badges */
+  --accent-green: oklch(0.74 0.13 180);
+  --accent-green-foreground: oklch(0.22 0.05 195);
+  --accent-green-soft: oklch(0.92 0.06 180);
 }
 
 .dark {

@@ -78,96 +78,128 @@ export const ALL_CATEGORIES: Category[] = [
   "social",
 ];
 
-const todayAt = (h: number, m = 0) => {
-  const d = new Date();
-  d.setHours(h, m, 0, 0);
-  return d.toISOString();
-};
-const daysFromNow = (n: number, h = 18) => {
-  const d = new Date();
-  d.setDate(d.getDate() + n);
-  d.setHours(h, 0, 0, 0);
+const at = (year: number, month: number, day: number, h: number, m = 0) => {
+  const d = new Date(year, month - 1, day, h, m, 0, 0);
   return d.toISOString();
 };
 
 export const SEED_EVENTS: CampusEvent[] = [
   {
-    id: "1",
-    title: "Pizza & Code Night",
-    host: "Computer Science Society",
+    id: "inspofest",
+    title: "Deakin InspoFest with HEX & ML.AI",
+    host: "HEX × ML.AI",
     description:
-      "Free pizza, free drinks, and a chill hack-along. Bring your laptop or just bring your appetite. Beginners welcome.",
-    date: todayAt(18, 30),
-    location: "Engineering Building, Room 204",
-    categories: ["free-food", "club", "social"],
-    emoji: "🍕",
-    rsvps: 87,
+      "An evening of inspiration, demos, and community with HEX and ML.AI. Talks, hands-on showcases, and free food. Open to all Deakin students.",
+    date: at(2026, 4, 17, 17, 0),
+    location: "Burwood Campus",
+    categories: ["club", "free-food", "networking", "social"],
+    emoji: "✨",
+    rsvps: 184,
     cost: "Free",
   },
   {
-    id: "2",
-    title: "Spring Career Fair",
-    host: "Careers Office",
+    id: "dusa-breakfast",
+    title: "DUSA Free Breakfast",
+    host: "DUSA Advocacy",
     description:
-      "Meet 60+ employers across tech, finance, and consulting. Bring printed CVs. Dress smart-casual.",
-    date: daysFromNow(2, 11),
-    location: "Main Hall",
-    categories: ["career", "networking"],
-    emoji: "💼",
-    rsvps: 412,
+      "DUSA's Advocacy Free Breakfast is back for T1 2026! Drop in at Burwood, Waurn Ponds or Waterfront for a free start to your day.",
+    date: at(2026, 3, 11, 9, 0),
+    location: "Burwood · Waurn Ponds · Waterfront",
+    categories: ["free-food", "social"],
+    emoji: "🥞",
+    rsvps: 322,
     cost: "Free",
   },
   {
-    id: "3",
-    title: "Business Faculty Mixer",
-    host: "Business School",
+    id: "pantry-burwood",
+    title: "DUSA Food Pantry — Burwood",
+    host: "DUSA",
     description:
-      "Mingle with professors, alumni, and fellow students. Light snacks and drinks provided.",
-    date: daysFromNow(1, 17),
-    location: "Business Atrium",
-    categories: ["faculty", "free-food", "networking"],
-    emoji: "🎓",
-    rsvps: 64,
+      "The DUSA Food Pantry is back at Burwood — bring a bag and collect fresh fruit, vegetables and pantry items.",
+    date: at(2026, 3, 11, 11, 0),
+    location: "Burwood",
+    categories: ["free-food"],
+    emoji: "🥦",
+    rsvps: 128,
     cost: "Free",
   },
   {
-    id: "4",
-    title: "Open Mic Night",
-    host: "Music Society",
+    id: "pantry-waterfront",
+    title: "DUSA Food Pantry — Waterfront",
+    host: "DUSA",
     description:
-      "Sign up to perform or just come watch. Coffee bar open all night.",
-    date: daysFromNow(3, 20),
-    location: "Student Union Cafe",
-    categories: ["social", "club"],
-    emoji: "🎤",
-    rsvps: 132,
+      "The DUSA Food Pantry is back at Waterfront — bring a bag and collect fresh fruit, vegetables and pantry items.",
+    date: at(2026, 3, 18, 11, 0),
+    location: "Waterfront",
+    categories: ["free-food"],
+    emoji: "🥕",
+    rsvps: 96,
     cost: "Free",
   },
   {
-    id: "5",
-    title: "Dance Showcase 2025",
-    host: "Dance Crew",
+    id: "pantry-waurn",
+    title: "DUSA Food Pantry — Waurn Ponds",
+    host: "DUSA",
     description:
-      "Annual showcase featuring 12 student dance groups. Tickets fund next year's costumes.",
-    date: daysFromNow(7, 19),
-    location: "Performing Arts Theatre",
-    categories: ["ticketed", "club", "social"],
-    emoji: "💃",
-    rsvps: 298,
-    cost: "$8",
+      "The DUSA Food Pantry is back at Waurn Ponds — bring a bag and collect fresh fruit, vegetables and pantry items.",
+    date: at(2026, 3, 25, 11, 0),
+    location: "Waurn Ponds",
+    categories: ["free-food"],
+    emoji: "🍎",
+    rsvps: 71,
+    cost: "Free",
   },
   {
-    id: "6",
-    title: "Health Sciences Research Talk",
-    host: "Faculty of Health",
+    id: "chillout-burwood",
+    title: "DUSA Chill Out Trolley — Burwood",
+    host: "DUSA",
     description:
-      "Dr. Patel presents on campus mental health research. Q&A and refreshments after.",
-    date: todayAt(15, 0),
-    location: "Health Sciences Lecture Hall 1",
-    categories: ["faculty", "free-food"],
-    emoji: "🧪",
-    rsvps: 41,
+      "Burwood students — get your FREE snack and drink fix in the Burwood Library on Level 2! Every Tuesday during T1.",
+    date: at(2026, 3, 31, 17, 0),
+    location: "Burwood Library, Level 2",
+    categories: ["free-food", "social"],
+    emoji: "🥤",
+    rsvps: 154,
     cost: "Free",
+  },
+  {
+    id: "chillout-geelong",
+    title: "DUSA Chill Out Trolley — Geelong",
+    host: "DUSA",
+    description:
+      "Geelong students — get your FREE snack and drink fix in the Waterfront & Waurn Ponds Library! Every Thursday during T1.",
+    date: at(2026, 4, 2, 17, 0),
+    location: "Waterfront · Waurn Ponds Library",
+    categories: ["free-food", "social"],
+    emoji: "🍪",
+    rsvps: 112,
+    cost: "Free",
+  },
+  {
+    id: "therapy-dog",
+    title: "Therapy Dog Program with Meya",
+    host: "Deakin Wellbeing",
+    description:
+      "Take a moment to relax and meet Meya the Therapy Dog on Tuesdays. A calm break between classes.",
+    date: at(2026, 4, 14, 10, 0),
+    location: "Burwood · Waurn Ponds",
+    categories: ["social", "faculty"],
+    emoji: "🐶",
+    rsvps: 240,
+    cost: "Free",
+  },
+  {
+    id: "barista-course",
+    title: "Barista Coffee Course & RSF",
+    host: "DUSA Skills",
+    description:
+      "Beginners course for entering the hospitality industry. Learn the fundamentals of making coffee, latte art, and earn your Responsible Food Handler certificate.",
+    date: at(2026, 4, 18, 9, 0),
+    location: "Melbourne CBD",
+    categories: ["career", "ticketed"],
+    emoji: "☕",
+    rsvps: 58,
+    cost: "Ticketed",
   },
 ];
 

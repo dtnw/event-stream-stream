@@ -68,12 +68,12 @@ function Index() {
       {/* Hero */}
       <section className="border-b bg-background">
         <div className="mx-auto max-w-6xl px-4 py-8 md:py-12">
-          <p className="mb-2 inline-block rounded-full bg-cat-food px-3 py-1 text-[11px] font-bold uppercase tracking-wider text-cat-food-foreground">
+          <p className="mb-2 inline-block rounded-full bg-accent-green-soft px-3 py-1 text-[11px] font-bold uppercase tracking-wider text-accent-green-foreground">
             one feed · zero scrolling instagram
           </p>
-          <h1 className="font-display text-3xl font-black leading-[1.05] text-primary md:text-5xl">
+          <h1 className="font-display text-3xl font-black leading-[1.05] text-foreground md:text-5xl">
             Every campus event.
-            <span className="text-foreground"> One place.</span>
+            <span className="text-accent-green"> One place.</span>
           </h1>
           <p className="mt-3 max-w-xl text-sm text-muted-foreground md:text-base">
             See what's on today, this week, and next — filter by free food,
@@ -86,47 +86,10 @@ function Index() {
             >
               Browse events →
             </a>
-            <span>{events.length} live</span>
-          </div>
-        </div>
-      </section>
-
-      {/* Notify preferences */}
-      <section className="mx-auto max-w-6xl px-4 pt-8">
-        <div className="rounded-3xl bg-card p-5 ring-1 ring-border">
-          <div className="mb-3 flex items-center justify-between gap-2">
-            <div>
-              <h2 className="font-display text-lg font-extrabold text-foreground">
-                🔔 Notify me about
-              </h2>
-              <p className="text-xs text-muted-foreground">
-                Tap categories you care about. We'll ping you when new ones drop.
-              </p>
-            </div>
-            {prefs.size > 0 && (
-              <span className="rounded-full bg-primary/10 px-2 py-0.5 text-[11px] font-semibold text-primary">
-                {prefs.size} on
-              </span>
-            )}
-          </div>
-          <div className="flex flex-wrap gap-2">
-            {ALL_CATEGORIES.map((c) => {
-              const on = prefs.has(c);
-              return (
-                <button
-                  key={c}
-                  onClick={() => togglePref(c)}
-                  className={`flex items-center gap-1.5 rounded-full px-3 py-1.5 text-xs font-semibold transition ${
-                    on
-                      ? `${CATEGORY_META[c].chipClass} ring-2 ring-primary`
-                      : "bg-muted text-muted-foreground ring-1 ring-border hover:bg-card"
-                  }`}
-                >
-                  <span aria-hidden>{CATEGORY_META[c].icon}</span>
-                  <span>{CATEGORY_META[c].label}</span>
-                </button>
-              );
-            })}
+            <span className="inline-flex items-center gap-1.5">
+              <span className="inline-block h-2 w-2 rounded-full bg-accent-green" />
+              {events.length} live
+            </span>
           </div>
         </div>
       </section>
@@ -200,6 +163,46 @@ function Index() {
             ))}
           </div>
         )}
+      </section>
+
+      {/* Notify preferences (moved to bottom) */}
+      <section className="mx-auto max-w-6xl px-4 pb-8">
+        <div className="rounded-3xl bg-accent-green-soft p-5 ring-1 ring-accent-green/30">
+          <div className="mb-3 flex items-center justify-between gap-2">
+            <div>
+              <h2 className="font-display text-lg font-extrabold text-foreground">
+                🔔 Notify me about
+              </h2>
+              <p className="text-xs text-muted-foreground">
+                Tap categories you care about. We'll ping you when new ones drop.
+              </p>
+            </div>
+            {prefs.size > 0 && (
+              <span className="rounded-full bg-accent-green px-2 py-0.5 text-[11px] font-semibold text-accent-green-foreground">
+                {prefs.size} on
+              </span>
+            )}
+          </div>
+          <div className="flex flex-wrap gap-2">
+            {ALL_CATEGORIES.map((c) => {
+              const on = prefs.has(c);
+              return (
+                <button
+                  key={c}
+                  onClick={() => togglePref(c)}
+                  className={`flex items-center gap-1.5 rounded-full px-3 py-1.5 text-xs font-semibold transition ${
+                    on
+                      ? `${CATEGORY_META[c].chipClass} ring-2 ring-accent-green`
+                      : "bg-card text-muted-foreground ring-1 ring-border hover:bg-muted"
+                  }`}
+                >
+                  <span aria-hidden>{CATEGORY_META[c].icon}</span>
+                  <span>{CATEGORY_META[c].label}</span>
+                </button>
+              );
+            })}
+          </div>
+        </div>
       </section>
 
       <footer className="border-t py-8 text-center text-xs text-muted-foreground">
