@@ -19,7 +19,7 @@ export type CampusEvent = {
   categories: Category[];
   emoji: string;
   rsvps: number;
-  interested: number;
+  interested?: number;
   limitedSpots?: boolean;
   cost?: string;
 };
@@ -291,6 +291,14 @@ export const addEvent = (e: Omit<CampusEvent, "id" | "rsvps">) => {
 };
 export const rsvp = (id: string) => {
   events = events.map((e) => (e.id === id ? { ...e, rsvps: e.rsvps + 1 } : e));
+  notify();
+};
+export const toggleInterested = (id: string, on: boolean) => {
+  events = events.map((e) =>
+    e.id === id
+      ? { ...e, interested: Math.max(0, (e.interested ?? 0) + (on ? 1 : -1)) }
+      : e,
+  );
   notify();
 };
 
