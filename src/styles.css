@@ -74,6 +74,9 @@
   --color-cat-faculty-foreground: var(--cat-faculty-foreground);
   --color-cat-ticketed: var(--cat-ticketed);
   --color-cat-ticketed-foreground: var(--cat-ticketed-foreground);
+  --color-accent-green: var(--accent-green);
+  --color-accent-green-foreground: var(--accent-green-foreground);
+  --color-accent-green-soft: var(--accent-green-soft);
   --font-display: "Nunito", ui-sans-serif, system-ui, sans-serif;
   --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
 }
