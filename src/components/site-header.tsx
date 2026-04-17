@@ -5,10 +5,10 @@ export function SiteHeader() {
     <header className="sticky top-0 z-40 bg-primary text-primary-foreground">
       <div className="mx-auto flex max-w-6xl items-center justify-between px-4 py-3">
         <Link to="/" className="flex items-center gap-2">
-          <span className="font-display text-2xl font-black tracking-tight">
-            campuslive
+          <span className="text-xl" aria-hidden>✦</span>
+          <span className="font-display text-xl font-black tracking-tight sm:text-2xl">
+            Live On Campus
           </span>
-          <span className="text-xl">✦</span>
         </Link>
         <nav className="hidden items-center gap-6 text-sm font-semibold sm:flex">
           <Link to="/" className="hover:opacity-80" activeOptions={{ exact: true }}>
