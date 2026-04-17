@@ -12,7 +12,8 @@ export type CampusEvent = {
   title: string;
   host: string;
   description: string;
-  date: string; // ISO
+  date: string; // ISO start
+  endDate?: string; // ISO end (optional, used for "live now" detection)
   location: string;
   categories: Category[];
   emoji: string;
