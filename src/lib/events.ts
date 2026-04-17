@@ -92,6 +92,7 @@ export const SEED_EVENTS: CampusEvent[] = [
     description:
       "An evening of inspiration, demos, and community with HEX and ML.AI. Talks, hands-on showcases, and free food. Open to all Deakin students.",
     date: at(2026, 4, 17, 17, 0),
+    endDate: at(2026, 4, 17, 20, 0),
     location: "Burwood Campus",
     categories: ["club", "free-food", "networking", "social"],
     emoji: "✨",
@@ -99,55 +100,45 @@ export const SEED_EVENTS: CampusEvent[] = [
     cost: "Free",
   },
   {
+    id: "inspofest-pitch",
+    title: "InspoFest Pitch Day with HEX",
+    host: "HEX",
+    description:
+      "Student teams pitch their InspoFest projects to a panel of judges and the HEX community. Come watch, vote, and cheer the next big idea on.",
+    date: at(2026, 4, 24, 13, 0),
+    endDate: at(2026, 4, 24, 17, 0),
+    location: "Burwood Campus · HEX Studio",
+    categories: ["club", "career", "networking", "social"],
+    emoji: "🎤",
+    rsvps: 96,
+    cost: "Free",
+  },
+  {
     id: "dusa-breakfast",
     title: "DUSA Free Breakfast",
     host: "DUSA Advocacy",
     description:
-      "DUSA's Advocacy Free Breakfast is back for T1 2026! Drop in at Burwood, Waurn Ponds or Waterfront for a free start to your day.",
-    date: at(2026, 3, 11, 9, 0),
+      "DUSA's Advocacy Free Breakfast is back! Drop in at Burwood, Waurn Ponds or Waterfront for a free start to your day.",
+    date: at(2026, 4, 22, 9, 0),
+    endDate: at(2026, 4, 22, 11, 0),
     location: "Burwood · Waurn Ponds · Waterfront",
-    categories: ["free-food", "social"],
+    categories: ["free-food", "social", "club"],
     emoji: "🥞",
     rsvps: 322,
     cost: "Free",
   },
   {
-    id: "pantry-burwood",
-    title: "DUSA Food Pantry — Burwood",
+    id: "dusa-pantry",
+    title: "DUSA Food Pantry",
     host: "DUSA",
     description:
-      "The DUSA Food Pantry is back at Burwood — bring a bag and collect fresh fruit, vegetables and pantry items.",
-    date: at(2026, 3, 11, 11, 0),
-    location: "Burwood",
-    categories: ["free-food"],
+      "Bring a bag and collect fresh fruit, vegetables and pantry items. Available across Burwood, Waterfront and Waurn Ponds on rotating days.",
+    date: at(2026, 4, 29, 11, 0),
+    endDate: at(2026, 4, 29, 13, 0),
+    location: "Burwood · Waterfront · Waurn Ponds",
+    categories: ["free-food", "faculty"],
     emoji: "🥦",
-    rsvps: 128,
-    cost: "Free",
-  },
-  {
-    id: "pantry-waterfront",
-    title: "DUSA Food Pantry — Waterfront",
-    host: "DUSA",
-    description:
-      "The DUSA Food Pantry is back at Waterfront — bring a bag and collect fresh fruit, vegetables and pantry items.",
-    date: at(2026, 3, 18, 11, 0),
-    location: "Waterfront",
-    categories: ["free-food"],
-    emoji: "🥕",
-    rsvps: 96,
-    cost: "Free",
-  },
-  {
-    id: "pantry-waurn",
-    title: "DUSA Food Pantry — Waurn Ponds",
-    host: "DUSA",
-    description:
-      "The DUSA Food Pantry is back at Waurn Ponds — bring a bag and collect fresh fruit, vegetables and pantry items.",
-    date: at(2026, 3, 25, 11, 0),
-    location: "Waurn Ponds",
-    categories: ["free-food"],
-    emoji: "🍎",
-    rsvps: 71,
+    rsvps: 214,
     cost: "Free",
   },
   {
@@ -156,9 +147,10 @@ export const SEED_EVENTS: CampusEvent[] = [
     host: "DUSA",
     description:
       "Burwood students — get your FREE snack and drink fix in the Burwood Library on Level 2! Every Tuesday during T1.",
-    date: at(2026, 3, 31, 17, 0),
+    date: at(2026, 4, 21, 17, 0),
+    endDate: at(2026, 4, 21, 18, 0),
     location: "Burwood Library, Level 2",
-    categories: ["free-food", "social"],
+    categories: ["free-food", "social", "club"],
     emoji: "🥤",
     rsvps: 154,
     cost: "Free",
@@ -169,7 +161,8 @@ export const SEED_EVENTS: CampusEvent[] = [
     host: "DUSA",
     description:
       "Geelong students — get your FREE snack and drink fix in the Waterfront & Waurn Ponds Library! Every Thursday during T1.",
-    date: at(2026, 4, 2, 17, 0),
+    date: at(2026, 4, 23, 17, 0),
+    endDate: at(2026, 4, 23, 18, 0),
     location: "Waterfront · Waurn Ponds Library",
     categories: ["free-food", "social"],
     emoji: "🍪",
@@ -181,8 +174,9 @@ export const SEED_EVENTS: CampusEvent[] = [
     title: "Therapy Dog Program with Meya",
     host: "Deakin Wellbeing",
     description:
-      "Take a moment to relax and meet Meya the Therapy Dog on Tuesdays. A calm break between classes.",
-    date: at(2026, 4, 14, 10, 0),
+      "Take a moment to relax and meet Meya the Therapy Dog. A calm break between classes — every Tuesday across Burwood and Waurn Ponds.",
+    date: at(2026, 4, 28, 10, 0),
+    endDate: at(2026, 4, 28, 13, 0),
     location: "Burwood · Waurn Ponds",
     categories: ["social", "faculty"],
     emoji: "🐶",
@@ -195,14 +189,50 @@ export const SEED_EVENTS: CampusEvent[] = [
     host: "DUSA Skills",
     description:
       "Beginners course for entering the hospitality industry. Learn the fundamentals of making coffee, latte art, and earn your Responsible Food Handler certificate.",
-    date: at(2026, 4, 18, 9, 0),
+    date: at(2026, 5, 2, 9, 0),
+    endDate: at(2026, 5, 2, 16, 30),
     location: "Melbourne CBD",
-    categories: ["career", "ticketed"],
+    categories: ["career", "ticketed", "networking"],
     emoji: "☕",
     rsvps: 58,
     cost: "Ticketed",
   },
+  {
+    id: "first-aid-burwood",
+    title: "Level 1 First Aid — Burwood",
+    host: "DUSA Skills",
+    description:
+      "Get qualified in Level 1 First Aid in a single day. Hands-on training with certified instructors, certificate issued on completion.",
+    date: at(2026, 5, 7, 9, 0),
+    endDate: at(2026, 5, 7, 16, 0),
+    location: "Burwood Campus",
+    categories: ["career", "ticketed", "faculty"],
+    emoji: "🩹",
+    rsvps: 42,
+    cost: "Ticketed",
+  },
+  {
+    id: "career-fair",
+    title: "T1 Careers Mixer",
+    host: "Deakin Careers",
+    description:
+      "Meet 40+ employers across tech, health, and finance. Bring printed CVs, drinks and snacks provided.",
+    date: at(2026, 5, 14, 16, 0),
+    endDate: at(2026, 5, 14, 19, 0),
+    location: "Burwood — Building LB",
+    categories: ["career", "networking", "free-food"],
+    emoji: "💼",
+    rsvps: 287,
+    cost: "Free",
+  },
 ];
+
+export const isLiveNow = (e: CampusEvent, now: Date = new Date()) => {
+  const start = new Date(e.date).getTime();
+  const end = e.endDate ? new Date(e.endDate).getTime() : start + 2 * 60 * 60 * 1000;
+  const t = now.getTime();
+  return t >= start && t <= end;
+};
 
 // In-memory store (wire to Lovable Cloud later for persistence)
 let events: CampusEvent[] = [...SEED_EVENTS];
