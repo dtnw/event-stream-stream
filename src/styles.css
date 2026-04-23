@@ -83,98 +83,98 @@
 
 :root {
   --radius: 1rem;
-  /* Pink Fantasy palette: FF499E · D264B6 · A480CF · 779BE7 · 49B6FF */
-  --background: oklch(0.97 0.01 320); /* very light lavender */
-  --foreground: oklch(0.22 0.04 295); /* dark purple-gray */
+  /* City Kids palette: bright teal · yellow · white · peach · light green */
+  --background: oklch(1 0 0); /* white */
+  --foreground: oklch(0.20 0.03 240); /* dark navy */
   --card: oklch(1 0 0);
-  --card-foreground: oklch(0.22 0.04 295);
+  --card-foreground: oklch(0.20 0.03 240);
   --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.22 0.04 295);
-  /* Hot pink as primary brand */
-  --primary: oklch(0.65 0.28 349); /* #FF499E */
+  --popover-foreground: oklch(0.20 0.03 240);
+  /* Cyan-teal as primary brand */
+  --primary: oklch(0.70 0.14 210); /* City Kids teal */
   --primary-foreground: oklch(1 0 0);
-  --secondary: oklch(0.93 0.04 265); /* light periwinkle */
-  --secondary-foreground: oklch(0.30 0.08 265);
-  --muted: oklch(0.93 0.03 310); /* light lavender */
-  --muted-foreground: oklch(0.55 0.07 300);
-  --accent: oklch(0.60 0.14 298); /* #A480CF purple */
-  --accent-foreground: oklch(1 0 0);
+  --secondary: oklch(0.94 0.03 210); /* very light teal */
+  --secondary-foreground: oklch(0.25 0.05 210);
+  --muted: oklch(0.95 0.01 220);
+  --muted-foreground: oklch(0.55 0.03 220);
+  --accent: oklch(0.87 0.10 65); /* peach */
+  --accent-foreground: oklch(0.25 0.06 50);
   --destructive: oklch(0.577 0.245 27.325);
   --destructive-foreground: oklch(0.984 0.003 247.858);
-  --border: oklch(0.88 0.05 300); /* light purple */
-  --input: oklch(0.88 0.05 300);
-  --ring: oklch(0.65 0.28 349); /* hot pink ring */
-  --chart-1: oklch(0.65 0.28 349); /* #FF499E hot pink */
-  --chart-2: oklch(0.58 0.18 325); /* #D264B6 pink-purple */
-  --chart-3: oklch(0.60 0.14 298); /* #A480CF purple */
-  --chart-4: oklch(0.65 0.13 265); /* #779BE7 periwinkle */
-  --chart-5: oklch(0.73 0.15 232); /* #49B6FF sky blue */
-  --sidebar: oklch(0.95 0.03 310); /* light lavender */
-  --sidebar-foreground: oklch(0.22 0.04 295);
-  --sidebar-primary: oklch(0.65 0.28 349); /* hot pink */
+  --border: oklch(0.90 0.02 210);
+  --input: oklch(0.90 0.02 210);
+  --ring: oklch(0.70 0.14 210); /* teal ring */
+  --chart-1: oklch(0.70 0.14 210); /* teal */
+  --chart-2: oklch(0.87 0.10 65);  /* peach */
+  --chart-3: oklch(0.84 0.09 155); /* light green */
+  --chart-4: oklch(0.90 0.16 95);  /* yellow */
+  --chart-5: oklch(0.75 0.13 340); /* pink */
+  --sidebar: oklch(0.97 0.02 210); /* near-white teal tint */
+  --sidebar-foreground: oklch(0.20 0.03 240);
+  --sidebar-primary: oklch(0.70 0.14 210);
   --sidebar-primary-foreground: oklch(1 0 0);
-  --sidebar-accent: oklch(0.90 0.05 300);
-  --sidebar-accent-foreground: oklch(0.22 0.04 295);
-  --sidebar-border: oklch(0.88 0.05 300);
-  --sidebar-ring: oklch(0.65 0.28 349);
+  --sidebar-accent: oklch(0.94 0.03 210);
+  --sidebar-accent-foreground: oklch(0.20 0.03 240);
+  --sidebar-border: oklch(0.90 0.02 210);
+  --sidebar-ring: oklch(0.70 0.14 210);
 
-  /* Hot pink CTA */
-  --cta: oklch(0.65 0.28 349); /* #FF499E */
-  --cta-foreground: oklch(1 0 0);
+  /* Yellow CTA — matches City Kids "Book A Tour" button */
+  --cta: oklch(0.90 0.16 95);
+  --cta-foreground: oklch(0.20 0.03 240);
 
-  /* Pink Fantasy category cards */
-  --cat-food: oklch(0.65 0.28 349); /* #FF499E hot pink */
-  --cat-food-foreground: oklch(1 0 0);
-  --cat-club: oklch(0.60 0.14 298); /* #A480CF purple */
-  --cat-club-foreground: oklch(1 0 0);
-  --cat-career: oklch(0.65 0.13 265); /* #779BE7 periwinkle */
+  /* City Kids-inspired category cards */
+  --cat-food: oklch(0.87 0.10 65);  /* peach — afterschool card */
+  --cat-food-foreground: oklch(0.25 0.06 50);
+  --cat-club: oklch(0.84 0.09 155); /* light green — camp card */
+  --cat-club-foreground: oklch(0.22 0.07 155);
+  --cat-career: oklch(0.70 0.14 210); /* teal */
   --cat-career-foreground: oklch(1 0 0);
-  --cat-social: oklch(0.58 0.18 325); /* #D264B6 pink-purple */
-  --cat-social-foreground: oklch(1 0 0);
-  --cat-faculty: oklch(0.73 0.15 232); /* #49B6FF sky blue */
-  --cat-faculty-foreground: oklch(0.22 0.05 240);
-  --cat-ticketed: oklch(0.65 0.28 349); /* #FF499E hot pink */
-  --cat-ticketed-foreground: oklch(1 0 0);
+  --cat-social: oklch(0.84 0.10 340); /* soft pink */
+  --cat-social-foreground: oklch(0.25 0.05 340);
+  --cat-faculty: oklch(0.58 0.13 210); /* deeper teal */
+  --cat-faculty-foreground: oklch(1 0 0);
+  --cat-ticketed: oklch(0.90 0.16 95); /* yellow */
+  --cat-ticketed-foreground: oklch(0.20 0.03 240);
 
-  /* Sky blue accent — used for highlights, hero ribbons, badges */
-  --accent-green: oklch(0.73 0.15 232); /* #49B6FF sky blue */
-  --accent-green-foreground: oklch(0.22 0.05 240);
-  --accent-green-soft: oklch(0.91 0.05 232); /* light sky blue */
+  /* Green accent — light green from camp card */
+  --accent-green: oklch(0.70 0.13 155);
+  --accent-green-foreground: oklch(0.22 0.07 155);
+  --accent-green-soft: oklch(0.84 0.09 155);
 }
 
 .dark {
-  --background: oklch(0.17 0.05 295); /* deep purple-navy */
-  --foreground: oklch(0.95 0.02 310);
-  --card: oklch(0.23 0.06 295);
-  --card-foreground: oklch(0.95 0.02 310);
-  --popover: oklch(0.23 0.06 295);
-  --popover-foreground: oklch(0.95 0.02 310);
-  --primary: oklch(0.70 0.26 349); /* lighter pink for dark bg */
-  --primary-foreground: oklch(0.15 0.04 300);
-  --secondary: oklch(0.27 0.07 270);
-  --secondary-foreground: oklch(0.95 0.02 310);
-  --muted: oklch(0.27 0.06 300);
-  --muted-foreground: oklch(0.65 0.08 300);
-  --accent: oklch(0.27 0.06 300);
-  --accent-foreground: oklch(0.95 0.02 310);
+  --background: oklch(0.15 0.02 230); /* very dark navy */
+  --foreground: oklch(0.95 0.01 220);
+  --card: oklch(0.20 0.03 230);
+  --card-foreground: oklch(0.95 0.01 220);
+  --popover: oklch(0.20 0.03 230);
+  --popover-foreground: oklch(0.95 0.01 220);
+  --primary: oklch(0.76 0.14 210); /* brighter teal for dark bg */
+  --primary-foreground: oklch(0.15 0.02 230);
+  --secondary: oklch(0.25 0.04 215);
+  --secondary-foreground: oklch(0.95 0.01 220);
+  --muted: oklch(0.25 0.03 220);
+  --muted-foreground: oklch(0.65 0.04 220);
+  --accent: oklch(0.25 0.03 220);
+  --accent-foreground: oklch(0.95 0.01 220);
   --destructive: oklch(0.704 0.191 22.216);
   --destructive-foreground: oklch(0.984 0.003 247.858);
   --border: oklch(1 0 0 / 10%);
   --input: oklch(1 0 0 / 15%);
-  --ring: oklch(0.70 0.26 349);
-  --chart-1: oklch(0.70 0.26 349); /* #FF499E brighter pink */
-  --chart-2: oklch(0.63 0.20 325); /* #D264B6 pink-purple */
-  --chart-3: oklch(0.65 0.15 298); /* #A480CF purple */
-  --chart-4: oklch(0.70 0.14 265); /* #779BE7 periwinkle */
-  --chart-5: oklch(0.77 0.16 232); /* #49B6FF sky blue */
-  --sidebar: oklch(0.23 0.06 295);
-  --sidebar-foreground: oklch(0.95 0.02 310);
-  --sidebar-primary: oklch(0.70 0.26 349);
-  --sidebar-primary-foreground: oklch(0.15 0.04 300);
-  --sidebar-accent: oklch(0.27 0.06 300);
-  --sidebar-accent-foreground: oklch(0.95 0.02 310);
+  --ring: oklch(0.76 0.14 210);
+  --chart-1: oklch(0.76 0.14 210); /* teal */
+  --chart-2: oklch(0.87 0.10 65);  /* peach */
+  --chart-3: oklch(0.84 0.09 155); /* light green */
+  --chart-4: oklch(0.90 0.16 95);  /* yellow */
+  --chart-5: oklch(0.75 0.13 340); /* pink */
+  --sidebar: oklch(0.20 0.03 230);
+  --sidebar-foreground: oklch(0.95 0.01 220);
+  --sidebar-primary: oklch(0.76 0.14 210);
+  --sidebar-primary-foreground: oklch(0.15 0.02 230);
+  --sidebar-accent: oklch(0.25 0.03 220);
+  --sidebar-accent-foreground: oklch(0.95 0.01 220);
   --sidebar-border: oklch(1 0 0 / 10%);
-  --sidebar-ring: oklch(0.70 0.26 349);
+  --sidebar-ring: oklch(0.76 0.14 210);
 }
 
 @layer base {
