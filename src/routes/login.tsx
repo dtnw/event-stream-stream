@@ -1,6 +1,5 @@
 import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
 import { useState } from "react";
-import deakinLogo from "@/assets/deakin-logo.webp";
 
 export const Route = createFileRoute("/login")({
   component: LoginPage,
@@ -46,11 +45,9 @@ function LoginPage() {
 
         <div className="w-full rounded-3xl bg-card p-7 shadow-sm ring-1 ring-border">
           <div className="mb-5 flex flex-col items-center text-center">
-            <img
-              src={deakinLogo}
-              alt="Deakin University"
-              className="h-20 w-20 rounded-full bg-white object-contain ring-1 ring-border"
-            />
+            <div className="flex h-20 w-20 items-center justify-center rounded-full bg-primary text-4xl text-primary-foreground">
+              ✦
+            </div>
             <h1 className="mt-4 font-display text-2xl font-black text-foreground">
               Sign in to Live On Campus
             </h1>
@@ -65,12 +62,6 @@ function LoginPage() {
             disabled={loading}
             className="flex w-full items-center justify-center gap-3 rounded-xl bg-primary px-4 py-3.5 text-sm font-bold text-primary-foreground shadow-sm transition hover:brightness-110 disabled:opacity-60"
           >
-            <img
-              src={deakinLogo}
-              alt=""
-              className="h-6 w-6 rounded-full bg-white"
-              aria-hidden
-            />
             {loading ? "Redirecting to Deakin…" : "Continue with Deakin SSO"}
           </button>
 

@@ -1,16 +1,10 @@
 import { Link } from "@tanstack/react-router";
-import deakinLogo from "@/assets/deakin-logo.webp";
 
 export function SiteHeader() {
   return (
     <header className="sticky top-0 z-40 bg-primary text-primary-foreground">
       <div className="mx-auto flex max-w-6xl items-center justify-between gap-3 px-4 py-3">
         <Link to="/" className="flex items-center gap-2">
-          <img
-            src={deakinLogo}
-            alt="Deakin University"
-            className="h-8 w-8 rounded-full bg-white object-contain"
-          />
           <span className="font-display text-lg font-black tracking-tight sm:text-2xl">
             Live On Campus
           </span>
