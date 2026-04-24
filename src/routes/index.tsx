@@ -21,7 +21,7 @@ export const Route = createFileRoute("/")({
       {
         name: "description",
         content:
-          "The unified feed of campus events. Filter by free food, club, faculty, career, ticketed and more. Built for students.",
+          "The unified feed of campus events. Filter by free food, club, SEBE, health and more. Built for students.",
       },
     ],
   }),
@@ -86,7 +86,7 @@ function Index() {
           </h1>
           <p className="mt-3 max-w-xl text-sm text-muted-foreground md:text-base">
             See what's on today, this week, and next — filter by free food,
-            faculty, or club. RSVP in one tap.
+            club, or health. RSVP in one tap.
           </p>
           <div className="mt-4 flex items-center gap-3 text-xs text-muted-foreground">
             <a
