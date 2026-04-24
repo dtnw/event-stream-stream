@@ -1,11 +1,12 @@
 export type Category =
   | "free-food"
   | "networking"
-  | "ticketed"
-  | "faculty"
-  | "club"
-  | "career"
   | "social"
+  | "sebe"
+  | "arts-ed"
+  | "bus-law"
+  | "health"
+  | "club"
   | "online";
 
 export type CampusEvent = {
@@ -40,35 +41,41 @@ export const CATEGORY_META: Record<
     cardClass: "bg-cat-career",
     icon: "🤝",
   },
-  ticketed: {
-    label: "Ticketed",
-    chipClass: "bg-cat-ticketed text-cat-ticketed-foreground",
-    cardClass: "bg-cat-ticketed",
-    icon: "🎟️",
-  },
-  faculty: {
-    label: "Faculty",
-    chipClass: "bg-cat-faculty text-cat-faculty-foreground",
-    cardClass: "bg-cat-faculty",
-    icon: "🎓",
-  },
-  club: {
-    label: "Club",
-    chipClass: "bg-cat-club text-cat-club-foreground",
-    cardClass: "bg-cat-club",
-    icon: "🎨",
-  },
-  career: {
-    label: "Career",
-    chipClass: "bg-cat-career text-cat-career-foreground",
-    cardClass: "bg-cat-career",
-    icon: "💼",
-  },
   social: {
     label: "Social",
     chipClass: "bg-cat-social text-cat-social-foreground",
     cardClass: "bg-cat-social",
     icon: "🎉",
+  },
+  sebe: {
+    label: "SEBE",
+    chipClass: "bg-cat-faculty text-cat-faculty-foreground",
+    cardClass: "bg-cat-faculty",
+    icon: "🔬",
+  },
+  "arts-ed": {
+    label: "Arts & Ed",
+    chipClass: "bg-cat-ticketed text-cat-ticketed-foreground",
+    cardClass: "bg-cat-ticketed",
+    icon: "🎨",
+  },
+  "bus-law": {
+    label: "Bus & Law",
+    chipClass: "bg-cat-club text-cat-club-foreground",
+    cardClass: "bg-cat-club",
+    icon: "📊",
+  },
+  health: {
+    label: "Health",
+    chipClass: "bg-accent-green text-accent-green-foreground",
+    cardClass: "bg-accent-green-soft",
+    icon: "🩺",
+  },
+  club: {
+    label: "Club",
+    chipClass: "bg-primary text-primary-foreground",
+    cardClass: "bg-primary",
+    icon: "🎭",
   },
   online: {
     label: "Online",
@@ -81,11 +88,12 @@ export const CATEGORY_META: Record<
 export const ALL_CATEGORIES: Category[] = [
   "free-food",
   "networking",
-  "ticketed",
-  "faculty",
-  "club",
-  "career",
   "social",
+  "sebe",
+  "arts-ed",
+  "bus-law",
+  "health",
+  "club",
   "online",
 ];
 
@@ -116,13 +124,13 @@ export const SEED_EVENTS: CampusEvent[] = [
     host: "HEX",
     description:
       "Student teams pitch their InspoFest projects to a panel of judges and the HEX community. Come watch, vote, and cheer the next big idea on.",
-    date: at(2026, 4, 24, 13, 0),
-    endDate: at(2026, 4, 24, 17, 0),
+    date: at(2026, 4, 24, 17, 0),
+    endDate: at(2026, 4, 24, 20, 0),
     location: "Burwood Campus · HEX Studio",
-    categories: ["club", "career", "networking", "social"],
+    categories: ["club", "sebe", "networking", "social"],
     emoji: "🎤",
-    rsvps: 96,
-    interested: 154,
+    rsvps: 21,
+    interested: 38,
     limitedSpots: true,
     cost: "Free",
   },
@@ -135,7 +143,7 @@ export const SEED_EVENTS: CampusEvent[] = [
     date: at(2026, 4, 22, 10, 0),
     endDate: at(2026, 4, 22, 11, 30),
     location: "Online (Zoom)",
-    categories: ["online", "faculty", "career"],
+    categories: ["online", "arts-ed"],
     emoji: "📚",
     rsvps: 38,
     interested: 47,
@@ -150,7 +158,7 @@ export const SEED_EVENTS: CampusEvent[] = [
     date: at(2026, 4, 30, 16, 0),
     endDate: at(2026, 4, 30, 19, 0),
     location: "Burwood — Building T, Room T2.05",
-    categories: ["faculty", "career", "free-food", "club"],
+    categories: ["sebe", "free-food", "club"],
     emoji: "🤖",
     rsvps: 73,
     interested: 121,
@@ -196,7 +204,7 @@ export const SEED_EVENTS: CampusEvent[] = [
     date: at(2026, 5, 6, 17, 30),
     endDate: at(2026, 5, 6, 19, 30),
     location: "Burwood — Deakin Business School Atrium",
-    categories: ["faculty", "career", "networking", "free-food"],
+    categories: ["bus-law", "networking", "free-food"],
     emoji: "📊",
     rsvps: 138,
     interested: 207,
@@ -212,7 +220,7 @@ export const SEED_EVENTS: CampusEvent[] = [
     date: at(2026, 5, 12, 15, 0),
     endDate: at(2026, 5, 12, 17, 30),
     location: "Waurn Ponds — Health & Bio Building",
-    categories: ["faculty", "free-food", "networking"],
+    categories: ["health", "free-food", "networking"],
     emoji: "🩺",
     rsvps: 64,
     interested: 113,
@@ -227,7 +235,7 @@ export const SEED_EVENTS: CampusEvent[] = [
     date: at(2026, 4, 28, 10, 0),
     endDate: at(2026, 4, 28, 13, 0),
     location: "Burwood · Waurn Ponds",
-    categories: ["social"],
+    categories: ["social", "health"],
     emoji: "🐶",
     rsvps: 240,
     interested: 312,
@@ -242,7 +250,7 @@ export const SEED_EVENTS: CampusEvent[] = [
     date: at(2026, 5, 2, 9, 0),
     endDate: at(2026, 5, 2, 16, 30),
     location: "Melbourne CBD",
-    categories: ["career", "ticketed", "networking"],
+    categories: ["networking", "social"],
     emoji: "☕",
     rsvps: 58,
     interested: 142,
@@ -258,7 +266,7 @@ export const SEED_EVENTS: CampusEvent[] = [
     date: at(2026, 5, 7, 9, 0),
     endDate: at(2026, 5, 7, 16, 0),
     location: "Burwood Campus",
-    categories: ["career", "ticketed"],
+    categories: ["health", "networking"],
     emoji: "🩹",
     rsvps: 42,
     interested: 96,
@@ -274,7 +282,7 @@ export const SEED_EVENTS: CampusEvent[] = [
     date: at(2026, 5, 14, 16, 0),
     endDate: at(2026, 5, 14, 19, 0),
     location: "Burwood — Building LB",
-    categories: ["career", "networking", "free-food"],
+    categories: ["networking", "free-food", "sebe"],
     emoji: "💼",
     rsvps: 287,
     interested: 188,
