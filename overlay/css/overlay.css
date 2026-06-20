@@ -1,0 +1,323 @@
+/* ═══════════════════════════════════════════════════════════════════════════
+   Twitch World Map Overlay — Stylesheet
+   Designed for OBS Browser Source (1080p / 1440p).
+   Background is transparent so the map sits cleanly over stream content.
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+/* ── Reset & base ──────────────────────────────────────────────────────────── */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  --font: 'Segoe UI', system-ui, -apple-system, sans-serif;
+  --panel-bg: rgba(10, 10, 20, 0.82);
+  --panel-border: rgba(255, 255, 255, 0.08);
+  --panel-radius: 12px;
+  --accent: #e63946;
+  --accent-dim: rgba(230, 57, 70, 0.25);
+  --text-primary: #f1f1f1;
+  --text-muted: #9ca3af;
+  --stat-bar-bg: rgba(255, 255, 255, 0.08);
+  --stat-bar-fill: var(--accent);
+  --shadow: 0 4px 24px rgba(0, 0, 0, 0.6);
+}
+
+html, body {
+  width: 100%;
+  height: 100%;
+  /* Transparent background: OBS will treat rgba(0,0,0,0) as chroma key. */
+  background: transparent;
+  font-family: var(--font);
+  font-size: 13px;
+  color: var(--text-primary);
+  overflow: hidden;
+  user-select: none;
+}
+
+/* ── Layout shell ───────────────────────────────────────────────────────────── */
+#overlay {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  display: grid;
+  grid-template-rows: 1fr;
+  grid-template-columns: 1fr auto;
+}
+
+/* ── Map area ───────────────────────────────────────────────────────────────── */
+#map-container {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+#map-image {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  /* Slight desaturation keeps the overlay readable over bright maps. */
+  filter: saturate(0.75) brightness(0.85);
+}
+
+/* Absolute layer for pins — same size as map-container. */
+#pin-layer {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+/* ── Pin animations ─────────────────────────────────────────────────────────── */
+@keyframes pin-drop {
+  0%   { transform: translate(-50%, -200%) scaleY(0.4); opacity: 0; }
+  60%  { transform: translate(-50%, -90%)  scaleY(1.1); opacity: 1; }
+  80%  { transform: translate(-50%, -105%) scaleY(0.95); }
+  100% { transform: translate(-50%, -100%) scaleY(1); opacity: 1; }
+}
+
+@keyframes pin-pulse-ring {
+  0%   { transform: translate(-50%, -50%) scale(0.8); opacity: 0.8; }
+  100% { transform: translate(-50%, -50%) scale(2.5); opacity: 0; }
+}
+
+.pin-drop {
+  animation: pin-drop var(--anim-duration, 600ms) cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+}
+
+/* ── Stats panel ────────────────────────────────────────────────────────────── */
+#stats-panel {
+  width: 220px;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  padding: 16px 12px;
+  background: var(--panel-bg);
+  border-left: 1px solid var(--panel-border);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  overflow: hidden;
+}
+
+.stats-section {
+  margin-bottom: 16px;
+}
+
+.stats-title {
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-bottom: 8px;
+}
+
+/* ── Summary counts ─────────────────────────────────────────────────────────── */
+.stats-counts {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+}
+
+.stat-card {
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid var(--panel-border);
+  border-radius: 8px;
+  padding: 10px 8px;
+  text-align: center;
+}
+
+.stat-card-value {
+  font-size: 22px;
+  font-weight: 800;
+  line-height: 1;
+  color: var(--text-primary);
+  font-variant-numeric: tabular-nums;
+}
+
+.stat-card-label {
+  font-size: 9px;
+  color: var(--text-muted);
+  margin-top: 4px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+/* ── Top countries list ──────────────────────────────────────────────────────── */
+.stats-countries {
+  flex: 1;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+#stat-country-list {
+  list-style: none;
+  overflow-y: auto;
+  flex: 1;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(255,255,255,0.15) transparent;
+}
+
+#stat-country-list::-webkit-scrollbar {
+  width: 4px;
+}
+#stat-country-list::-webkit-scrollbar-thumb {
+  background: rgba(255,255,255,0.15);
+  border-radius: 2px;
+}
+
+.stat-country-row {
+  display: grid;
+  grid-template-columns: 18px 1fr auto 28px;
+  align-items: center;
+  gap: 4px;
+  padding: 4px 2px;
+  border-bottom: 1px solid rgba(255,255,255,0.03);
+}
+
+.stat-rank {
+  font-size: 9px;
+  color: var(--text-muted);
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+.stat-name {
+  font-size: 11px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  color: var(--text-primary);
+}
+
+.stat-bar-wrap {
+  height: 4px;
+  background: var(--stat-bar-bg);
+  border-radius: 2px;
+  overflow: hidden;
+}
+
+.stat-bar {
+  display: block;
+  height: 100%;
+  background: var(--accent);
+  border-radius: 2px;
+  transition: width 0.4s ease;
+}
+
+.stat-count {
+  font-size: 10px;
+  font-weight: 700;
+  color: var(--text-muted);
+  font-variant-numeric: tabular-nums;
+  text-align: right;
+}
+
+/* ── Status bar ────────────────────────────────────────────────────────────── */
+#status-bar {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 4px 2px;
+  border-top: 1px solid var(--panel-border);
+  margin-top: auto;
+}
+
+.status-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  flex-shrink: 0;
+  transition: background 0.3s;
+}
+
+.status-connecting { background: #f4a261; }
+.status-connected  { background: #2a9d8f; animation: pulse-status 2s ease infinite; }
+.status-disconnected { background: #6b7280; }
+.status-error      { background: #e63946; }
+
+@keyframes pulse-status {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0.4; }
+}
+
+#status-text {
+  font-size: 9px;
+  color: var(--text-muted);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* ── Last command flash ───────────────────────────────────────────────────── */
+#last-command-wrap {
+  margin-top: 8px;
+  padding: 6px 8px;
+  background: var(--accent-dim);
+  border: 1px solid var(--accent);
+  border-radius: 6px;
+  min-height: 28px;
+  display: flex;
+  align-items: center;
+}
+
+#last-command {
+  font-size: 10px;
+  color: var(--text-primary);
+  font-weight: 600;
+  transition: opacity 0.2s;
+}
+
+@keyframes cmd-flash {
+  0%   { background: rgba(230, 57, 70, 0.5); }
+  100% { background: var(--accent-dim); }
+}
+
+#last-command-wrap.flash {
+  animation: cmd-flash 0.5s ease-out forwards;
+}
+
+#last-command.flash {
+  /* Re-trigger via JS class swap. */
+}
+
+/* ── Clear button ───────────────────────────────────────────────────────────── */
+#btn-clear {
+  margin-top: 8px;
+  width: 100%;
+  padding: 6px;
+  background: transparent;
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 6px;
+  color: var(--text-muted);
+  font-size: 10px;
+  cursor: pointer;
+  transition: border-color 0.2s, color 0.2s;
+  font-family: var(--font);
+}
+
+#btn-clear:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+/* ── Responsive: 1440p scale-up ─────────────────────────────────────────────── */
+@media (min-width: 2560px) {
+  #stats-panel { width: 280px; }
+  :root { font-size: 15px; }
+  .stat-card-value { font-size: 28px; }
+}
+
+/* ── Responsive: compact below 900px ────────────────────────────────────────── */
+@media (max-width: 900px) {
+  #stats-panel {
+    width: 180px;
+    padding: 10px 8px;
+  }
+  .stat-card-value { font-size: 18px; }
+}

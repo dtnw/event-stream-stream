@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<!--
+  ╔══════════════════════════════════════════════════════════════════════════╗
+  ║  Twitch World Map Overlay                                                ║
+  ║  OBS Browser Source — 1920×1080 or 2560×1440                            ║
+  ║                                                                          ║
+  ║  Setup:                                                                  ║
+  ║    1. Edit js/config.js — set your channel name + optional OAuth token. ║
+  ║    2. In OBS: Add > Browser Source                                       ║
+  ║       • Local file: check this box, point to this index.html            ║
+  ║       • Width: 1920  Height: 1080  (or 2560 × 1440)                     ║
+  ║       • Shutdown source when not visible: ✓                             ║
+  ║       • Refresh browser when scene becomes active: ✓                   ║
+  ║                                                                          ║
+  ║  Chat command: !from <country>                                           ║
+  ║  Example:  !from Germany   !from USA   !from South Korea                ║
+  ╚══════════════════════════════════════════════════════════════════════════╝
+-->
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Twitch World Map Overlay</title>
+  <link rel="stylesheet" href="css/overlay.css" />
+</head>
+<body>
+
+  <div id="overlay">
+
+    <!-- ── Map ─────────────────────────────────────────────────────────────── -->
+    <div id="map-container">
+      <!--
+        World map uses equirectangular (plate carrée) projection.
+        Configured in js/config.js → mapImageUrl.
+        Pin coordinates are computed from lat/lng using:
+          x% = (lng + 180) / 360 × 100
+          y% = (90  - lat) / 180 × 100
+      -->
+      <img
+        id="map-image"
+        alt="World Map"
+        draggable="false"
+      />
+
+      <!-- Pins are injected here by MapManager. -->
+      <div id="pin-layer" aria-hidden="true"></div>
+    </div>
+
+    <!-- ── Stats panel ──────────────────────────────────────────────────────── -->
+    <aside id="stats-panel" aria-label="Viewer statistics">
+
+      <!-- Summary cards -->
+      <div class="stats-section">
+        <div class="stats-title">Viewers Mapped</div>
+        <div class="stats-counts">
+          <div class="stat-card">
+            <div class="stat-card-value" id="stat-total-viewers">0</div>
+            <div class="stat-card-label">Viewers</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-card-value" id="stat-total-countries">0</div>
+            <div class="stat-card-label">Countries</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Top countries list -->
+      <div class="stats-section stats-countries">
+        <div class="stats-title">Top Countries</div>
+        <ol id="stat-country-list">
+          <!-- Populated dynamically by StatsPanel -->
+        </ol>
+      </div>
+
+      <!-- Last command indicator -->
+      <div id="last-command-wrap">
+        <span id="last-command">Waiting for !from commands…</span>
+      </div>
+
+      <!-- Clear button -->
+      <button id="btn-clear" type="button" title="Clear all pins and reset viewer data">
+        ✕ Clear All Pins
+      </button>
+
+      <!-- Connection status -->
+      <div id="status-bar">
+        <span id="status-dot" class="status-dot status-connecting"></span>
+        <span id="status-text">Initialising…</span>
+      </div>
+
+    </aside>
+
+  </div><!-- /#overlay -->
+
+  <!--
+    ES modules are used throughout — no bundler required.
+    OBS Chromium supports ES modules natively.
+  -->
+  <script type="module" src="js/app.js"></script>
+
+</body>
+</html>
