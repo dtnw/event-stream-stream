@@ -1,11 +1,9 @@
 name = "live-on-campus"
 compatibility_date = "2024-09-23"
-compatibility_flags = ["nodejs_compat"]
 
 # Serve the Vite-built SPA as Workers static assets.
-# The Workers runtime serves index.html for all unmatched routes,
-# which is the correct behaviour for a client-side TanStack Router SPA.
+# not_found_handling = "single-page-application" ensures all unmatched routes
+# fall back to index.html, which is required for client-side TanStack Router.
 [assets]
 directory = "./dist"
-html_handling = "single-page-application"
 not_found_handling = "single-page-application"
