@@ -3,7 +3,7 @@ compatibility_date = "2024-09-23"
 
 # Run vite build before wrangler deploys, producing the dist/ directory.
 [build]
-command = "npm run build"
+command = "npm install && npm run build"
 
 # Serve the Vite-built SPA as Workers static assets.
 # not_found_handling = "single-page-application" ensures all unmatched routes
